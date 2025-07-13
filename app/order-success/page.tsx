@@ -3,7 +3,7 @@ import { CheckCircle, Package, Mail } from "lucide-react"
 
 export default function OrderSuccessPage() {
   const orderNumber = 'LM' + Math.random().toString(36).substr(2, 9).toUpperCase()
-  
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-6">
@@ -23,7 +23,7 @@ export default function OrderSuccessPage() {
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-semibold mb-2">Order #{orderNumber}</h2>
                 <p className="text-gray-600">
-                  Estimated delivery: 3-5 business days
+                  Estimated delivery: 3–5 business days
                 </p>
               </div>
 
@@ -33,6 +33,27 @@ export default function OrderSuccessPage() {
                   <h3 className="font-medium mb-1">Confirmation Email</h3>
                   <p className="text-sm text-gray-600">Sent to your email address</p>
                 </div>
+
                 <div className="text-center">
                   <Package className="h-8 w-8 text-orange-600 mx-auto mb-2" />
-                  <h3 className="font-medium mb-1">Order Processing\
+                  <h3 className="font-medium mb-1">Order Processing</h3>
+                  <p className="text-sm text-gray-600">We’re preparing your items</p>
+                </div>
+
+                <div className="text-center">
+                  <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                  <h3 className="font-medium mb-1">Ready to Ship</h3>
+                  <p className="text-sm text-gray-600">Tracking will be available soon</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-sm text-gray-500">
+            Need help? <a href="/contact" className="text-blue-600 underline">Contact support</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
