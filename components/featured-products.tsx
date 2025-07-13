@@ -3,24 +3,10 @@ import { Suspense } from "react"
 import FeaturedProductsClientComponent, { type Product } from "@/components/featured-products-client"
 import LoadingSpinner from "@/components/loading-spinner"
 
-const getBaseUrl = () => {
-  if (typeof window !== "undefined") {
-    // Client-side
-    return ""
-  }
-  // Server-side
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`
-  }
-  return `http://localhost:${process.env.PORT || 3000}`
-}
-
-const BASE_URL = getBaseUrl()
-
 async function getFeaturedProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${BASE_URL}/api/products/featured`, {
-      cache: "no-store", // Or use next: { revalidate: 60 } if you prefer
+    const res = await fetch("https://code-alpha-ecommerce-store-2z9c.vercel.app/api/products/featured", {
+      cache: "no-store", // Use cache: "no-store" to prevent build-time issues
     })
 
     if (!res.ok) {
