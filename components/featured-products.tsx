@@ -4,6 +4,11 @@ import FeaturedProductsClientComponent, { type Product } from "@/components/feat
 import LoadingSpinner from "@/components/loading-spinner"
 
 const getBaseUrl = () => {
+  if (typeof window !== "undefined") {
+    // Client-side
+    return ""
+  }
+  // Server-side
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`
   }
@@ -15,7 +20,7 @@ const BASE_URL = getBaseUrl()
 async function getFeaturedProducts(): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}/api/products/featured`, {
-      next: { revalidate: 60 },
+      cache: "no-store", // Or use next: { revalidate: 60 } if you prefer
     })
 
     if (!res.ok) {
